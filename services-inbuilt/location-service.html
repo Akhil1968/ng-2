@@ -1,0 +1,22 @@
+<html ng-app="locationServiceApp">
+<body ng-controller="MainCtrl as mainCtrl">
+  <h1>Hello Services!</h1>
+  <button ng-click="mainCtrl.logStuff()">Log something</button>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
+</script>
+<script type="text/javascript">
+  angular.module('locationServiceApp', [])
+    .controller('MainCtrl', ['$location', function($location) {
+      var self = this;
+      self.logStuff = function() {
+        console.log('$location.path=' + $location.path());
+        console.log('$location.url=' + $location.url());
+        console.log('$location.absUrl()=' + $location.absUrl());
+        console.log('$location.search()=' + $location.search());
+      };
+    }])
+</script>
+</body>
+</html>

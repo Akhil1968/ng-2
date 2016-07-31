@@ -1,0 +1,18 @@
+{
+  "name": "nodeangular",
+  "version": "1.0.0",
+  "description": "Node+Angular",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "keywords": [
+    "req",
+    "express"
+  ],
+  "author": "Akhil",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

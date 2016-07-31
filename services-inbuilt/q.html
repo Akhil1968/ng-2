@@ -1,0 +1,70 @@
+<html ng-app="qApp">
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
+
+<body ng-controller="MainCtrl as ctrl">
+<div class="container">
+  <h1>Inbuilt Services: $q!</h1>
+  <div class="form-group">
+    <label for="greetText">Greeting Text:</label>
+    <input type="text" ng-model="ctrl.greetText" id="greetText"
+      class="form-control"  placeholder="Enter greeting Text" >
+  </input>
+  </div>
+  <div class="form-group">
+    <label for="allowed">Greeting allowed:</label>
+    <input type="checkbox" ng-model="ctrl.okToGreet" 
+      class="form-control" id="allowed" ></input>
+  </div>
+  <div class="form-group">
+    <button ng-click="ctrl.qMethod()" class="form-control btn btn-success">Greet</button>
+  </div>
+  <div class="form-group alert alert-success" >{{ctrl.message}}</div>
+
+</div>
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
+</script>
+<script type="text/javascript">
+  angular.module('qApp', [])
+    .controller('MainCtrl', ['$log', '$q', function($log, $q) {
+      var self = this;
+      self.okToGreet = false;
+      self.greetText = "";
+      self.message = "";
+
+      self.qMethod = function() {
+        //var promise = 
+        asyncGreet(self.greetText)        
+        .then(function(greeting) {
+          self.message = greeting;
+        }, function(reason) {
+          self.message = reason;
+        });
+        $log.warn('The button was pressed');
+        console.log('This is console log');
+      };
+
+      function asyncGreet(name) {
+      // perform some asynchronous operation, resolve or reject the promise when appropriate.
+      return $q(function(resolve, reject) {
+        setTimeout(function() {
+          if (self.okToGreet) {
+            resolve('Hello, ' + name + '!');
+          } else {
+            reject('Greeting ' + name + ' is not allowed.');
+          }
+        }, 1000); //setTimeout
+      }); //return $q()
+    }//asyncGreet(name)
+  }]);// controller
+</script>
+</body>
+</html>
+
+
+
+

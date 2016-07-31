@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="services">
+<head>
+  <title>Value Service</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
+<body ng-controller="versionCtrl as vc">
+  <div class="container">
+    <h2>This is version v{{vc.getVersion()}}</h2>
+    <button class="btn btn-danger"
+            ng-click="vc.incMajor()">
+      Increment major number
+    </button>
+    <button class="btn btn-warning"
+            ng-click="vc.incMinor()">
+      Increment minor number
+    </button>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
+  </script>
+  <script>
+    angular.module('services', [])
+    .value('version', {major: 1, minor: 3})
+    .controller('versionCtrl',
+      ['version', function (version) {
+        this.getVersion = function () {
+          return version.major + "." + version.minor;
+        }
+        this.incMinor = function () {
+          version.minor++;
+        }
+        this.incMajor = function () {
+          version.major++;
+        }
+      }]);
+
+    angular.module('services')
+    .config(function ($provide) {
+      $provide.decorator('version', function () {
+        return {major: 2, minor: 0};
+      })
+    });
+  </script>
+</body>
+</html>

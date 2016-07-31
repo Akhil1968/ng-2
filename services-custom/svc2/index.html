@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html data-ng-app="servicesApp">
+<body ng-controller="MainCtrl as mainCtrl">
+  <button ng-click="mainCtrl.open('first')">
+    Open First
+  </button>
+  <button ng-click="mainCtrl.open('second')">
+    Open Second
+  </button>
+  <div ng-switch on="mainCtrl.tab">
+    <div ng-switch-when="first">
+      <div ng-controller="SubCtrl as ctrl">
+        <h2>First tab</h2>
+        <h3>{{ ctrl.currentNum() }}</h3>
+		<button ng-click="ctrl.incrementNum()">Add Number</button>
+      </div>
+
+    </div>
+    <div ng-switch-when="second">
+      <div ng-controller="SubCtrl as ctrl">
+        <h2>Second tab</h2>
+        <h3>{{ ctrl.currentNum() }}</h3>
+		<button ng-click="ctrl.incrementNum()">Add Number</button>
+      </div>
+    </div>
+  </div>
+  <!-- load angular  
+     angular.min.js  
+     https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js  
+  -->
+  <script  src="angular.min.js">  </script>
+  <script src="script.js"></script>
+</body>
+</html>
+    
+

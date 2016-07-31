@@ -1,0 +1,39 @@
+<!-- index.html -->
+<!--  Angular Routing is best explained on this web page-> https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating   -->
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="akhilRouteApp">
+<head>
+  <!-- load bootstrap and fontawesome via CDN -->
+
+  <!-- load angular -->
+  <script src="ng142/angular.min.js"></script>
+  <script src="ng142/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body >
+	<!-- HEADER AND NAVBAR -->
+	<header>
+		<nav >
+		<div >
+			<div >
+				<h3>SPA application : Angular Routing</h3>
+			</div>
+
+			<ul >
+
+				<li><a href="#first"> First</a></li>
+				<li><a href="#second"> Second</a></li>
+			</ul>
+		</div>
+		</nav>
+	</header>
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<div id="main">
+	<!-- angular templating : this is where content will be injected -->
+	<div ng-view></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>Filters in Action</title>
+</head>
+<body ng-app="filtersApp">
+
+<ul ng-controller="filterCotroller as ctrl">
+  <li>
+    Name with no filters: {{ctrl.name}}
+  </li>
+
+  <li>
+    Name - uppercase filter: {{ctrl.name | uppercase}}
+  </li>
+
+  <br>
+  <li>
+    Timestamp: {{ctrl.startTime}}
+  </li>
+  <li>
+    Default Date filter: {{ctrl.startTime | date}}
+  </li>
+  <li>
+    Medium Date filter: {{ctrl.startTime | date:'medium'}}
+  </li>
+  <li>
+    Custom Date filter: {{ctrl.startTime | date:'M/dd, yyyy'}}
+  </li>
+  <li>
+    Custom Date filter in controller: {{ctrl.filteredTime}}
+  </li>
+</ul>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
+</script>
+
+<script type="text/javascript">
+  angular.module('filtersApp', [])
+    .controller('filterCotroller',  
+      ['lowercaseFilter', 'dateFilter', function(lf, dateFilter) {
+
+      this.name = lf('Akhilanand Singh') ;
+  
+      this.startTime = new Date().getTime();
+      this.filteredTime = dateFilter(this.startTime, 'M/dd, yyyy');
+    }]);
+</script>
+</body>
+</html>

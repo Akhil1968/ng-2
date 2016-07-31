@@ -1,0 +1,31 @@
+<html ng-app="windowServiceApp">
+<head>
+  <title>Window Service</title>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+  <h1>Inbuit Services: $window, $location and $log!</h1>
+  <h3>Page Two</h3>
+  <button class="btn btn-warning" ng-click="mainCtrl.changePage()">Change Page</button>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js">
+</script>
+<script type="text/javascript">
+  angular.module('windowServiceApp', [])
+    .controller('MainCtrl', 
+      ['$window', '$log', '$location', function($window, $log, $location) {
+        var self = this;
+        self.changePage = function() {
+          var url = "page1.html";
+          $log.log(url);
+          $log.log('$location.absUrl()=' + $location.absUrl());
+          $window.location.href = url;
+        };
+    }])
+</script>
+</body>
+</html>
